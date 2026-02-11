@@ -26,8 +26,6 @@ echo "🔽 Downloading Kimi K2.5 model (375GB)..."
 echo ""
 echo ""
 
-cd /root
-
 python3 << 'PYTHON_EOF'
 from huggingface_hub import snapshot_download
 import os
