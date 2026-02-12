@@ -32,7 +32,7 @@ import os
 print("Downloading model...")
 snapshot_download(
     repo_id="unsloth/Kimi-K2.5-GGUF",
-    allow_patterns=["*UD-Q2_K_XL*"],
+    allow_patterns=["*UD-Q4_K_XL*"],
     local_dir="/Kimi-K2.5-GGUF",
 )
 print("✅ Download complete!")
