@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 echo "🚀 Starting Kimi K2.5 4-bit Server..."
+
+# Initialize CUDA
+nvidia-smi
+
 export LLAMA_SET_ROWS=1
 
-# Check if 4-bit model exists (13 splits!)
 if [ ! -f "/Kimi-K2.5-GGUF/UD-Q4_K_XL/Kimi-K2.5-UD-Q4_K_XL-00001-of-00013.gguf" ]; then
-    echo "❌ 4-bit model not found!"
+    echo "❌ Model not found!"
     exit 1
 fi
 
@@ -15,7 +18,6 @@ if [ ! -f "llama.cpp/build/bin/llama-server" ]; then
 fi
 
 echo "✅ Starting 4-bit server on port 8080..."
-echo "📊 Using 6x H200 GPUs with all layers on GPU..."
 
 cd llama.cpp/build/bin
 
@@ -30,7 +32,7 @@ cd llama.cpp/build/bin
   --n-gpu-layers 99 \
   --threads 32 \
   --parallel 8 \
-  --flash-attn \
+  --flash-attn on \
   --verbose
 
-echo "✅ Server running on port 8080"
+echo "✅ Server running!"
