@@ -1,14 +1,14 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Starting Kimi K2.5 Server..."
+echo "🚀 Starting Kimi K2.5 4-bit Server..."
 
 # Set environment variables
 export LLAMA_SET_ROWS=1
 
-# Check if model exists
-if [ ! -f "/Kimi-K2.5-GGUF/UD-Q2_K_XL/Kimi-K2.5-UD-Q2_K_XL-00001-of-00008.gguf" ]; then
-    echo "❌ Model not found! Please download first."
+# Check if 4-bit model exists
+if [ ! -f "/Kimi-K2.5-GGUF/UD-Q4_K_XL/Kimi-K2.5-UD-Q4_K_XL-00001-of-00005.gguf" ]; then
+    echo "❌ 4-bit model not found! Please download first."
     exit 1
 fi
 
@@ -18,7 +18,8 @@ if [ ! -f "llama.cpp/build/bin/llama-server" ]; then
     exit 1
 fi
 
-echo "✅ Starting server on port 8080..."
+echo "✅ Starting 4-bit server on port 8080..."
+echo "📊 Using 6x H200 GPUs with all layers on GPU..."
 
 cd llama.cpp/build/bin
 
@@ -31,7 +32,9 @@ cd llama.cpp/build/bin
   --min-p 0.01 \
   --top-p 0.95 \
   --n-gpu-layers 99 \
-  --threads 12 \
-  --parallel 4 \
-  -ot ".ffn_.*_exps.=CPU"
+  --threads 32 \
+  --parallel 8 \
+  --flash-attn \
+  --verbose
 
+echo "✅ Server running on port 8080"
