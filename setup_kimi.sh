@@ -22,7 +22,7 @@ echo "🔧 Installing Hugging Face Hub..."
 pip3 install --upgrade huggingface_hub
 
 # Step 3: Download model
-echo "🔽 Downloading Kimi K2.5 model (375GB)..."
+echo "🔽 Downloading Kimi K2.5 model..."
 echo ""
 echo ""
 
