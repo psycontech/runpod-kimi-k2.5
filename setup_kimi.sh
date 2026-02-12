@@ -29,17 +29,13 @@ echo ""
 python3 << 'PYTHON_EOF'
 from huggingface_hub import snapshot_download
 import os
-
-if not os.path.exists("/root/Kimi-K2.5-GGUF/UD-Q2_K_XL"):
-    print("Downloading model...")
-    snapshot_download(
-        repo_id="unsloth/Kimi-K2.5-GGUF",
-        allow_patterns=["*UD-Q2_K_XL*"],
-        local_dir="/root/Kimi-K2.5-GGUF",
-    )
-    print("✅ Download complete!")
-else:
-    print("✅ Model already exists, skipping download")
+print("Downloading model...")
+snapshot_download(
+    repo_id="unsloth/Kimi-K2.5-GGUF",
+    allow_patterns=["*UD-Q2_K_XL*"],
+    local_dir="/Kimi-K2.5-GGUF",
+)
+print("✅ Download complete!")
 PYTHON_EOF
 
 # Step 4: Build llama.cpp
