@@ -48,7 +48,7 @@ fi
 cd llama.cpp
 mkdir -p build
 cd build
-cmake .. -DGGML_CUDA=ON
+cmake .. -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=90
 cmake --build . --config Release -j$(nproc)
 
 echo ""
